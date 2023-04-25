@@ -64,7 +64,7 @@ document.getElementById('beerContainer').addEventListener('click', event => {
     // ToDo
         if(event.target.matches('.details-link')){
             event.preventDefault();
-            const beerID = event.target.getAttribute('.data-beer-id');
+            const beerID = event.target.getAttribute('data-beer-id');
             getBeerDetails(beerID);
         }
         /* Speichern sie die data-beer-id in eine Konstante und rufen sie die
@@ -99,14 +99,14 @@ function getBeerDetails(beerID) {
                                         <p><b>ingredients: malt</b></p>
                                         <ul>
                                            
-                                           ${beer.ingredients.map(malt=`<li>${malt.name}</li>`).join('')}
+                                           ${beer.ingredients.map(malt=>`<li>${malt.name}</li>`).join('')}
                                         </ul>
                                     </div>
                                     <div class="px-2">
                                         <p><b>ingredients: hops</b></p>
                                         <ul>
                                            
-                                           ${beer.ingredients.map(hops=`<li>${hops.name}</li>`).join('')}
+                                           ${beer.ingredients.map(hops=>`<li>${hops.name}</li>`).join('')}
 
                                         </ul>
                                     </div>
@@ -147,7 +147,7 @@ function getBeerDetails(beerID) {
                                 <p><b>Food Pairing</b></p>
                                 <ul>
                                     
-                                    ${beer.food_pairing.map(food_pairing=`<li>${food_pairing}</li>`).join('')}
+                                    ${beer.food_pairing.map(food_pairing=>`<li>${food_pairing}</li>`).join('')}
                                 </ul>
                             </div>
                         </div>
