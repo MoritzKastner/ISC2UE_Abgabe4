@@ -189,3 +189,4 @@ function getBeerDetails(beerID) {
     });
 }
 console.log(fullBeerList)
+console.log(beer)
