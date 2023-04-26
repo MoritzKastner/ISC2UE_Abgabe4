@@ -7,7 +7,31 @@ let fullBeerList = [];
     3.: Tagline
     4.: Id
  */
+displayBeer()
+// Diese Funktion wird ausgeführt, sobald die Seite geladen wurde
+function displayBeer() {
+    // Die URL der API, die die Biere liefert
+    const url = `https://api.punkapi.com/v2/beers`;
 
+    // Abrufen der Daten von der API mit fetch
+        // ToDo
+    fetch(url)
+        .then(response => response.json())
+        .then(data =>{
+            fullBeerList =data;
+            //fullBeerList =fullBeerList.push(data);
+            const beerHTML =fullBeerList.map(generateBeerHtml).join('');
+            document.getElementById('beerContainer').innerHTML = beerHTML;
+
+
+        });
+       
+    // Generieren des HTML-Codes für jedes Bier und Zusammenfügen in eine einzige Zeichenkette => Hilfestellung: data.map(generateBeerHtml).join('')
+        // ToDo
+   
+    // Fügen des HTML-Codes zur beerContainer-Div-Box hinzu
+        // ToDo
+}
 const generateBeerHtml = beer => `
   <section class="col">
     <div class="card">
@@ -24,35 +48,7 @@ const generateBeerHtml = beer => `
     </div>
   </section>
 `;
-displayBeer()
 
-// Diese Funktion wird ausgeführt, sobald die Seite geladen wurde
-function displayBeer() {
-    // Die URL der API, die die Biere liefert
-    const url = `https://api.punkapi.com/v2/beers`;
-
-    // Abrufen der Daten von der API mit fetch
-        // ToDo
-    fetch(url)
-        .then(response => response.json())
-        
-    // Speichern der vollständigen Liste der Biere in das vorgegebene Array
-        // ToDo
-        .then(data =>{
-            fullBeerList =data;
-            //fullBeerList =fullBeerList.push(data);
-            const beerHTML = fullBeerList.map(generateBeerHtml).join('');
-            document.getElementById('beerContainer').innerHTML = beerHTML;
-
-
-        });
-       
-    // Generieren des HTML-Codes für jedes Bier und Zusammenfügen in eine einzige Zeichenkette => Hilfestellung: data.map(generateBeerHtml).join('')
-        // ToDo
-   
-    // Fügen des HTML-Codes zur beerContainer-Div-Box hinzu
-        // ToDo
-}
 
 
 
@@ -77,9 +73,15 @@ document.getElementById('beerContainer').addEventListener('click', event => {
 function getBeerDetails(beerID) {
     /* Speichern Sie das Objekt aus der fullBeerList an der Stelle der ID die als Übergabeparameter
        übergeben wird in die const beer die Sie hier definieren */
-       const beer = fullBeerList[Number(beerID)];
-    // ToDo
+       //const url = `https://api.punkapi.com/v2/beers`;
 
+       /*fetch(url)
+       .then(response => response.json())
+       .then(data=>{
+        fullBeerList =data;      
+       });*/
+       const beer = fullBeerList[Number(beerID)];  
+      
     /* Das HTML-Code für das Modal-Fenster mit den Details des Biers
        Fügen Sie die korrekten Daten mit ${beer.bsp} aus dem Objekt ein überall wo <!-- ToDo: ... --> steht */
     const modalHtml = `
@@ -131,7 +133,7 @@ function getBeerDetails(beerID) {
                                     </tr>
                                     <tr>
                                         <td>boil volume</td>
-                                         ${beer.boil_volume.value}${beer.boil_volume.unit}</td>
+                                        <td> ${beer.boil_volume.value}${beer.boil_volume.unit}</td>
                                     </tr>
         
                                     <tr>
@@ -187,6 +189,7 @@ function getBeerDetails(beerID) {
     modal.addEventListener('hidden.bs.modal', () => {
         modal.remove();
     });
+
+
 }
 console.log(fullBeerList)
-console.log(beer)
